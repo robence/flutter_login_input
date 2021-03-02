@@ -35,46 +35,48 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget.title!),
       ),
-      body: Form(
-        key: _formKey,
-        child: Column(
-          children: <Widget>[
-            TextFormField(
-              keyboardType: TextInputType.name,
-              textInputAction: TextInputAction.next,
-              decoration: InputDecoration(
-                hintText: 'Enter your full name',
-                labelText: 'Full Name',
-              ),
+      body: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Form(
+            key: _formKey,
+            child: Column(
+              children: <Widget>[
+                TextFormField(
+                  keyboardType: TextInputType.name,
+                  textInputAction: TextInputAction.next,
+                  decoration: InputDecoration(
+                    hintText: 'Enter your full name',
+                    labelText: 'Full Name',
+                  ),
+                ),
+                TextFormField(
+                  keyboardType: TextInputType.phone,
+                  textInputAction: TextInputAction.next,
+                  decoration: InputDecoration(
+                    hintText: 'Enter your phone number',
+                    labelText: 'Phone Number',
+                  ),
+                ),
+                TextFormField(
+                  keyboardType: TextInputType.emailAddress,
+                  textInputAction: TextInputAction.next,
+                  decoration: InputDecoration(
+                    hintText: 'Enter your email address',
+                    labelText: 'Email Address',
+                  ),
+                ),
+                TextFormField(
+                  keyboardType: TextInputType.text,
+                  textInputAction: TextInputAction.done,
+                  obscureText: true,
+                  decoration: InputDecoration(
+                    hintText: 'Enter your password',
+                    labelText: 'Password',
+                  ),
+                ),
+              ],
             ),
-            TextFormField(
-              keyboardType: TextInputType.phone,
-              textInputAction: TextInputAction.next,
-              decoration: InputDecoration(
-                hintText: 'Enter your phone number',
-                labelText: 'Phone Number',
-              ),
-            ),
-            TextFormField(
-              keyboardType: TextInputType.emailAddress,
-              textInputAction: TextInputAction.next,
-              decoration: InputDecoration(
-                hintText: 'Enter your email address',
-                labelText: 'Email Address',
-              ),
-            ),
-            TextFormField(
-              keyboardType: TextInputType.text,
-              textInputAction: TextInputAction.done,
-              obscureText: true,
-              decoration: InputDecoration(
-                hintText: 'Enter your password',
-                labelText: 'Password',
-              ),
-            ),
-          ],
-        ),
-      ),
+          )),
     );
   }
 }
