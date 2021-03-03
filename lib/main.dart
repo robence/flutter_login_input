@@ -29,6 +29,13 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   final _formKey = GlobalKey<FormState>();
 
+  String? _validateInput(value) {
+    if (value.isEmpty) {
+      return 'Please enter some text';
+    }
+    return null;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,6 +51,7 @@ class _LoginPageState extends State<LoginPage> {
                 TextFormField(
                   keyboardType: TextInputType.name,
                   textInputAction: TextInputAction.next,
+                  validator: _validateInput,
                   decoration: InputDecoration(
                     hintText: 'Enter your full name',
                     labelText: 'Full Name',
@@ -74,6 +82,21 @@ class _LoginPageState extends State<LoginPage> {
                     labelText: 'Password',
                   ),
                 ),
+                ElevatedButton(
+                  onPressed: () {
+                    if (_formKey.currentState!.validate()) {
+                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                        content: const Text('Yay! A SnackBar!'),
+                        duration: const Duration(seconds: 1),
+                        action: SnackBarAction(
+                          label: 'Undo',
+                          onPressed: () {},
+                        ),
+                      ));
+                    }
+                  },
+                  child: Text('Submit'),
+                )
               ],
             ),
           )),
