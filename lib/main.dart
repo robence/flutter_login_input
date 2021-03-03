@@ -36,6 +36,19 @@ class _LoginPageState extends State<LoginPage> {
     return null;
   }
 
+  void _submitForm() {
+    if (_formKey.currentState!.validate()) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: const Text('Yay! A SnackBar!'),
+        duration: const Duration(seconds: 1),
+        action: SnackBarAction(
+          label: 'Undo',
+          onPressed: () {},
+        ),
+      ));
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -82,20 +95,12 @@ class _LoginPageState extends State<LoginPage> {
                     labelText: 'Password',
                   ),
                 ),
-                ElevatedButton(
-                  onPressed: () {
-                    if (_formKey.currentState!.validate()) {
-                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                        content: const Text('Yay! A SnackBar!'),
-                        duration: const Duration(seconds: 1),
-                        action: SnackBarAction(
-                          label: 'Undo',
-                          onPressed: () {},
-                        ),
-                      ));
-                    }
-                  },
-                  child: Text('Submit'),
+                Padding(
+                  padding: EdgeInsets.only(top: 15),
+                  child: ElevatedButton(
+                    onPressed: _submitForm,
+                    child: Text('Register'),
+                  ),
                 )
               ],
             ),
