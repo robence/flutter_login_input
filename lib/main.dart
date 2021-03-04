@@ -29,6 +29,11 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   final _formKey = GlobalKey<FormState>();
 
+  final _nameController = TextEditingController();
+  final _phoneController = TextEditingController();
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
+
   String? _validateInput(value) {
     if (value.isEmpty) {
       return 'Please enter some text';
@@ -38,6 +43,14 @@ class _LoginPageState extends State<LoginPage> {
 
   void _submitForm() {
     if (_formKey.currentState!.validate()) {
+      final user = {
+        'name': _nameController.text,
+        'phone': _phoneController.text,
+        'email': _emailController.text,
+        'password': _passwordController.text,
+      };
+      print(user.toString());
+
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         content: const Text('Yay! A SnackBar!'),
         duration: const Duration(seconds: 1),
@@ -47,6 +60,15 @@ class _LoginPageState extends State<LoginPage> {
         ),
       ));
     }
+  }
+
+  @override
+  void dispose() {
+    _nameController.dispose();
+    _phoneController.dispose();
+    _emailController.dispose();
+    _passwordController.dispose();
+    super.dispose();
   }
 
   @override
@@ -64,6 +86,7 @@ class _LoginPageState extends State<LoginPage> {
                 TextFormField(
                   keyboardType: TextInputType.name,
                   textInputAction: TextInputAction.next,
+                  controller: _nameController,
                   validator: _validateInput,
                   decoration: InputDecoration(
                     hintText: 'Enter your full name',
@@ -73,6 +96,8 @@ class _LoginPageState extends State<LoginPage> {
                 TextFormField(
                   keyboardType: TextInputType.phone,
                   textInputAction: TextInputAction.next,
+                  controller: _phoneController,
+                  validator: _validateInput,
                   decoration: InputDecoration(
                     hintText: 'Enter your phone number',
                     labelText: 'Phone Number',
@@ -81,6 +106,8 @@ class _LoginPageState extends State<LoginPage> {
                 TextFormField(
                   keyboardType: TextInputType.emailAddress,
                   textInputAction: TextInputAction.next,
+                  controller: _emailController,
+                  validator: _validateInput,
                   decoration: InputDecoration(
                     hintText: 'Enter your email address',
                     labelText: 'Email Address',
@@ -89,6 +116,8 @@ class _LoginPageState extends State<LoginPage> {
                 TextFormField(
                   keyboardType: TextInputType.text,
                   textInputAction: TextInputAction.done,
+                  controller: _passwordController,
+                  validator: _validateInput,
                   obscureText: true,
                   decoration: InputDecoration(
                     hintText: 'Enter your password',
